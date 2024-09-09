@@ -23,9 +23,6 @@ export default function Home() {
   });
   return (
     <>
-      <div className={variables.test} style={{ color: variables.primaryColor }}>
-        小洪
-      </div>
       <Space align="center">
         <Button type="primary">Button</Button>
         <Button>Confirm</Button>
