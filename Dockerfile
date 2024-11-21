@@ -1,4 +1,4 @@
-FROM swr.cn-south-1.myhuaweicloud.com/horizonpay/node:20-alpine
+FROM swr.cn-south-1.myhuaweicloud.com/horizonpay/node:20-alpine as base 
 COPY . .
 RUN npm install --registry=https://registry.npmmirror.com
 EXPOSE 8000

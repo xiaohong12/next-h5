@@ -3,7 +3,6 @@ import type { AppProps } from "next/app";
 // normalize.css
 import "normalize.css/normalize.css";
 import Head from "next/head";
-//@ts-ignore
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
