@@ -1,4 +1,4 @@
-FROM node:20 AS builder
+FROM swr.cn-south-1.myhuaweicloud.com/horizonpay/node:20.5.1 AS builder
 WORKDIR /app
 COPY package.json ./
 RUN npm install  --registry=https://registry.npmmirror.com
@@ -12,7 +12,7 @@ COPY . .
 RUN npm run build
 
 
-FROM node:20 AS  runner
+FROM swr.cn-south-1.myhuaweicloud.com/horizonpay/node:20.5.1 AS  runner
 WORKDIR /app
 
 ENV NODE_ENV production
