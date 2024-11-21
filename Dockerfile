@@ -1,4 +1,4 @@
-FROM swr.cn-south-1.myhuaweicloud.com/horizonpay/node:20.5.1 AS builder
+FROM crpi-q0dge1psj6pvnbh7.cn-guangzhou.personal.cr.aliyuncs.com/font_node/node:20.5.1 AS builder
 WORKDIR /app
 COPY package.json ./
 RUN npm install  --registry=https://registry.npmmirror.com
@@ -12,7 +12,7 @@ COPY . .
 RUN npm run build
 
 
-FROM swr.cn-south-1.myhuaweicloud.com/horizonpay/node:20.5.1 AS  runner
+FROM crpi-q0dge1psj6pvnbh7.cn-guangzhou.personal.cr.aliyuncs.com/font_node/node:20.5.1 AS  runner
 WORKDIR /app
 
 ENV NODE_ENV production
