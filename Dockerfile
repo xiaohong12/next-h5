@@ -1,10 +1,17 @@
 FROM swr.cn-south-1.myhuaweicloud.com/horizonpay/node:20-alpine as base 
-COPY . .
-RUN npm install --registry=https://registry.npmmirror.com
-EXPOSE 8000
+WORKDIR /app
+COPY package.json ./
+RUN npm install  --registry=https://registry.npmmirror.com
 RUN npm run build
-#CMD ["npm", "run", "dev"]
-FROM swr.cn-south-1.myhuaweicloud.com/horizonpay/nginx:alpine
-EXPOSE 80
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=base /app/dist/ /tpayment/
+FROM swr.cn-south-1.myhuaweicloud.com/horizonpay/node:20-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV production
+# COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+EXPOSE 3000
+ENV PORT 3000
+
+CMD ["node_modules/.bin/next", "start"]
